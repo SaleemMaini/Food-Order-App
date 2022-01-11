@@ -1,28 +1,39 @@
-import {  useState } from "react";
+import React, { Suspense, useState } from "react";
 import Header from "./components/Layout/Header";
 import Meals from "./components/Meals/Meals";
-import Cart from "./components/Cart/Cart";
 import CartContextProvider from "./store/CartContextProvider";
+
+const Cart = React.lazy(() => import("./components/Cart/Cart"));
 
 function App() {
   const [cartIsVisible, setCartIsVisible] = useState(false);
 
   const showCartHandler = () => {
     setCartIsVisible(true);
-  }
+  };
 
   const closeCartHandler = () => {
     setCartIsVisible(false);
-  }
+  };
 
   return (
-    <CartContextProvider>
-      {cartIsVisible && <Cart onClose={closeCartHandler}></Cart>}
-      <Header onOpenCart={showCartHandler} />
-      <main>
-        <Meals />
-      </main>
-    </CartContextProvider>
+    <React.Fragment>
+      <Suspense
+        fallback={
+          <div className="centered">
+            <p>Loading...</p>
+          </div>
+        }
+      >
+        <CartContextProvider>
+          {cartIsVisible && <Cart onClose={closeCartHandler}></Cart>}
+          <Header onOpenCart={showCartHandler} />
+          <main>
+            <Meals />
+          </main>
+        </CartContextProvider>
+      </Suspense>
+    </React.Fragment>
   );
 }
 
