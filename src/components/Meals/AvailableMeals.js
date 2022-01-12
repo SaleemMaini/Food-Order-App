@@ -4,7 +4,7 @@ import classes from "./AvailableMeals.module.css";
 import MealItem from "./MealItem/MealItem";
 import { useEffect, useState } from "react";
 
-const AvilableMeals = () => {
+const AvailableMeals = () => {
   // ***************Fetch the data from the firebase ***************
   // meals state is the list of data that we got from firebase api as json data then we convert it to js data
   const [meals, setMeals] = useState([]);
@@ -49,10 +49,10 @@ const AvilableMeals = () => {
     <section className={classes.meals}>
       <Card>
         {isLoading && <p>Loading...</p>}
-        {error && <p>error</p>}
+        {error && <p>{error} (Please turn on the VPN if firebase don't work in your country)</p>}
         <ul>{mealsList}</ul>
       </Card>
     </section>
   );
 };
-export default AvilableMeals;
+export default AvailableMeals;

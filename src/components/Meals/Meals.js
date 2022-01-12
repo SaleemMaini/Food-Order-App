@@ -1,13 +1,13 @@
 import React from "react";
 import { Fragment } from "react/cjs/react.production.min";
-import AvilableMeals from "./AvilableMeals";
+import AvailableMeals from "./AvailableMeals";
 import MealsSummary from "./MealsSummary";
 
 const Meals = () => {
   return (
     <Fragment>
       <MealsSummary />
-      <AvilableMeals />
+      <AvailableMeals />
     </Fragment>
   );
 };

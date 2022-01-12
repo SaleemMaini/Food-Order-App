@@ -1,12 +1,12 @@
 .form {
     margin: 1rem 0;
-    height: 19rem;
-    overflow-y: scroll;
+    height: 10rem;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
   }
-
-  
   .control {
     margin-bottom: 0.5rem;
+    width: 95%;
   }
   
   .control label {
