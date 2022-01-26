@@ -2,6 +2,9 @@ import React, { Suspense, useState } from "react";
 import Header from "./components/Layout/Header";
 import Meals from "./components/Meals/Meals";
 import CartContextProvider from "./store/CartContextProvider";
+// Bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const Cart = React.lazy(() => import("./components/Cart/Cart"));
 

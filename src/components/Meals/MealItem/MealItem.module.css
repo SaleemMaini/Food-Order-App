@@ -13,10 +13,19 @@
 .description {
   font-style: italic;
 }
+.mealPhoto {
+  width: 5rem;
+  height: 5rem;
+  margin-bottom: 8px;
+}
 
 .price {
   margin-top: 0.25rem;
   font-weight: bold;
   color: #ad5502;
   font-size: 1.25rem;
+}
+
+.mealCard {
+  margin-bottom: 1rem;
 }

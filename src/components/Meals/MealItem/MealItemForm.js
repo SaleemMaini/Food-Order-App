@@ -24,7 +24,7 @@ const MealItemForm = (props) => {
   };
 
   return (
-    <form className={classes.form} onSubmit={submitFormHandler}>
+    <form className={`${classes.form} mx-auto`} onSubmit={submitFormHandler}>
       {/* extract entered amount, use ref for that */}
       <Input
         input={{
