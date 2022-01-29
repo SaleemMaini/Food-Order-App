@@ -52,11 +52,11 @@ const AvailableMeals = () => {
     <section className={classes.mealsList}>
       <header>Meals List</header>
       {/* Error Handling */}
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <p className={classes.errorHandle}>Loading...</p>}
       {error && (
-        <p>
+        <p className={classes.errorHandle}>
           {error} (Please turn on the VPN if firebase doesn't work in your
-          country)
+          country).
         </p>
       )}
       {/* Meals List */}

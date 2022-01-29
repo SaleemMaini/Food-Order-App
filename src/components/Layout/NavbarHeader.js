@@ -8,7 +8,7 @@ const NavbarHeader = (props) => {
       <Container>
         <Navbar.Brand href="#home">
           <img src={logo} alt="" width="30" height="30" className="mx-3" />
-          <span>Food order app</span>
+          <span style={{ fontWeight: 600 }}>Food order app</span>
         </Navbar.Brand>
         <Navbar.Brand>
           <HeaderCartButton onClick={props.cartOnClick} />
