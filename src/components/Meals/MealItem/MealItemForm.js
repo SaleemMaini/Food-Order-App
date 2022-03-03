@@ -9,13 +9,9 @@ const MealItemForm = (props) => {
     event.preventDefault();
     // get the entered amount from the input using ref
     const enteredAmount = amountInputRef.current.value;
-    // convert enterd value from  string to number
+    // convert entered value from  string to number
     const enteredAmountNumber = +enteredAmount;
-    if (
-      enteredAmount.trim().length === 0 ||
-      enteredAmountNumber < 1 ||
-      enteredAmountNumber > 5
-    ) {
+    if (enteredAmount.trim().length === 0 || enteredAmountNumber < 1) {
       setAmountIsValid(false);
       return;
     }
@@ -26,18 +22,37 @@ const MealItemForm = (props) => {
   return (
     <form className={`${classes.form} mx-auto`} onSubmit={submitFormHandler}>
       {/* extract entered amount, use ref for that */}
-      <Input
-        input={{
-          ref: amountInputRef,
-          id: "amount_" + props.id,
-          type: "number",
-          max: 5,
-          min: 1,
-          step: 1,
-          defaultValue: 1,
-        }}
-        label={"Amount"}
-      />
+      <div className={classes.quantityControl}>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            return amountInputRef.current.value++;
+          }}
+        >
+          +
+        </button>
+        <Input
+          input={{
+            ref: amountInputRef,
+            id: "quantity_" + props.id,
+            type: "number",
+            min: 1,
+            defaultValue: 1,
+          }}
+          label={"Quantity"}
+        />
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            if (amountInputRef.current.value > 0) {
+              return amountInputRef.current.value--;
+            }
+            return;
+          }}
+        >
+          -
+        </button>
+      </div>
       <button>+Add</button>
       {!amountIsValid && <p>amount is not valid</p>}
     </form>

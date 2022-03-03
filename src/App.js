@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Header from "./components/Layout/Header";
-import Meals from "./components/Meals/Meals";
+import NavbarHeader from "./components/Layout/NavbarHeader";
+import MealsList from "./components/Meals/MealsList";
 import CartContextProvider from "./store/CartContextProvider";
 import Cart from "./components/Cart/Cart";
 
 // Bootstrap
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [cartIsVisible, setCartIsVisible] = useState(false);
@@ -19,15 +19,13 @@ function App() {
   };
 
   return (
-    <React.Fragment>
-        <CartContextProvider>
-          {cartIsVisible && <Cart onClose={closeCartHandler}></Cart>}
-          <Header onOpenCart={showCartHandler} />
-          <main>
-            <Meals />
-          </main>
-        </CartContextProvider>
-    </React.Fragment>
+    <CartContextProvider>
+      {cartIsVisible && <Cart onClose={closeCartHandler}></Cart>}
+      <NavbarHeader cartOnClick={showCartHandler} />
+      <main>
+        <MealsList />
+      </main>
+    </CartContextProvider>
   );
 }
 

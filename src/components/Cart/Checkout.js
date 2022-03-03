@@ -28,6 +28,7 @@ const Checkout = (props) => {
     const enteredStreet = streetInputRef.current.value();
     const enteredPostal = postalInputRef.current.value();
     const enteredCity = cityInputRef.current.value();
+    
     // VALIDATE CHECK OUT FORM VALUES
     const enteredNameIsValid = !isEmpty(enteredName);
     const enteredStreetIsValid = !isEmpty(enteredStreet);

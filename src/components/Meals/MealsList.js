@@ -1,19 +1,14 @@
 import useHttp from "../../hooks/use-http";
-import classes from "./AvailableMeals.module.css";
+import classes from "./MealsList.module.css";
 import MealItem from "./MealItem/MealItem";
 import { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-const AvailableMeals = () => {
-  // ***************Fetch the data from the firebase ***************
-  // meals state is the list of data that we got from firebase api as json data then we convert it to js data
+const MealsList = () => {
+  // **** Fetch the data from the firebase ****
   const [meals, setMeals] = useState([]);
-  // use http the custom hook used to handle with api
   const { isLoading, error, sendRequest: fetchMeals } = useHttp();
-  // get data and handle it
   useEffect(() => {
-    // get the data as JSON and convert it to js then save it in the meals state array
     const transformMeals = (mealObj) => {
       const loadedMeals = [];
       for (const mealKey in mealObj) {
@@ -46,27 +41,19 @@ const AvailableMeals = () => {
     />
   ));
 
-  // *************** End fetch the data ***************
-
   return (
-    <section className={classes.mealsList}>
+    <Container className={classes.mealsList}>
       <header>Meals List</header>
       {/* Error Handling */}
       {isLoading && <p className={classes.errorHandle}>Loading...</p>}
       {error && (
         <p className={classes.errorHandle}>
-          {error} (Please turn on the VPN if firebase doesn't work in your
-          country).
+          {error} ( Please turn on the VPN if firebase doesn't work in your
+          country ).
         </p>
       )}
-      {/* Meals List */}
-      <Container>
-        <Row>{mealsList.slice(0, 3)}</Row>
-        <Row>
-          {mealsList.slice(3)}
-        </Row>
-      </Container>
-    </section>
+      <Row>{mealsList}</Row>
+    </Container>
   );
 };
-export default AvailableMeals;
+export default MealsList;

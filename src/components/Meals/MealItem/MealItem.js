@@ -21,10 +21,12 @@ const MealItem = (props) => {
 
   return (
     <Fragment>
-      <Col>
+      <Col className={classes.mealCol}>
         <Card className={`${classes.mealCard} text-center`}>
           <Card.Body>
-            <div className={`${classes.mealPhoto} mx-auto d-flex align-items-center`}>
+            <div
+              className={`${classes.mealPhoto} mx-auto d-flex align-items-center`}
+            >
               <Card.Img
                 className=""
                 variant="top"
@@ -35,7 +37,7 @@ const MealItem = (props) => {
             <Card.Title>{props.name}</Card.Title>
             <Card.Text>{props.description}</Card.Text>
             <Card.Text>{price}</Card.Text>
-            <Card.Footer>
+            <Card.Footer style={{ padding: "0.5rem 0rem" }}>
               <MealItemForm id={props.id} onAddToCart={addToCartHandler} />
             </Card.Footer>{" "}
           </Card.Body>

@@ -49,8 +49,6 @@ const Cart = (props) => {
           name={item.name}
           price={item.price}
           amount={item.amount}
-          // the bind function used here to not execute the function just to pass the arguments to it
-          // bind allows you to pre configure the argument that function will receive when it's being executed
           onAdd={cartItemAddHandler.bind(null, item)}
           onRemove={cartItemRemoveHandler.bind(null, item.id)}
         />

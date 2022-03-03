@@ -1,4 +1,11 @@
-
+.form {
+  display: flex;
+  direction: column;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
 .form button {
   font: inherit;
   cursor: pointer;
@@ -15,4 +22,32 @@
 .form button:active {
   background-color: #1e2833;
   border-color: #1e2833;
+}
+
+.quantityControl {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quantityControl label {
+  margin: 0 0.5rem;
+  
+}
+.quantityControl input {
+  margin-bottom: 10px !important;
+  text-align: center;
+  padding: 5px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+.quantityControl button {
+  padding: 10px !important;
+  width: 3rem !important;
 }
