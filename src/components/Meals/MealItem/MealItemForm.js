@@ -44,7 +44,7 @@ const MealItemForm = (props) => {
         <button
           onClick={(e) => {
             e.preventDefault();
-            if (amountInputRef.current.value > 0) {
+            if (amountInputRef.current.value > 1) {
               return amountInputRef.current.value--;
             }
             return;
