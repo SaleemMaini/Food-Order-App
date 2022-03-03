@@ -25,24 +25,31 @@
   color: #ad5502;
   font-size: 1.25rem;
 }
-.mealCol{
-  max-width: fit-content !important;  
+.mealCol {
+  max-width: fit-content !important;
 }
 
- @media (min-width:1px) and (max-width:542px) {
-  .mealCol{
-  margin: 0 auto;
-  }  
-} 
+@media (min-width: 1px) and (max-width: 542px) {
+  .mealCol {
+    margin: 0 auto;
+  }
+}
 
 .mealCard {
   margin-bottom: 1rem;
   width: 240px;
-  height: 95%;
+  height: 93%;
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) and (max-width: 1199px) {
   .mealCard {
     max-width: 216px;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1400px){
+  .mealCard {
+    /* width: 261px; */
+    
   }
 }

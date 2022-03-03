@@ -52,7 +52,9 @@ const MealsList = () => {
           country ).
         </p>
       )}
-      <Row>{mealsList}</Row>
+      <Row>
+        {mealsList}
+      </Row>
     </Container>
   );
 };

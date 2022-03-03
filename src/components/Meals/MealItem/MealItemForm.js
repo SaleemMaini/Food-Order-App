@@ -3,49 +3,64 @@ import Input from "../../UI/Input";
 import classes from "./MealItemForm.module.css";
 
 const MealItemForm = (props) => {
-  const [amountIsValid, setAmountIsValid] = useState(true);
-  const amountInputRef = useRef();
+  const [quantityIsValid, setQuantityIsValid] = useState(true);
+  const quantityInputRef = useRef();
+
+  const changeQuantityHandler = () => {
+    const enteredQuantity = +quantityInputRef.current.value;
+    if (enteredQuantity < 1 || enteredQuantity > 25) {
+      setQuantityIsValid(false);
+      return;
+    } else {
+      setQuantityIsValid(true);
+    }
+  };
+
   const submitFormHandler = (event) => {
     event.preventDefault();
-    // get the entered amount from the input using ref
-    const enteredAmount = amountInputRef.current.value;
-    // convert entered value from  string to number
-    const enteredAmountNumber = +enteredAmount;
-    if (enteredAmount.trim().length === 0 || enteredAmountNumber < 1) {
-      setAmountIsValid(false);
+    const enteredQuantity = +quantityInputRef.current.value;
+    if (enteredQuantity < 1 || enteredQuantity > 25) {
+      setQuantityIsValid(false);
       return;
     }
-    // call a function which expect to get on props and forward entered amount number. because the cart item needs more data than just the entered amount, here we only have the amount thts why we need to calling the context method in the meal item component
-    props.onAddToCart(enteredAmountNumber);
+    props.onAddToCart(enteredQuantity);
   };
 
   return (
     <form className={`${classes.form} mx-auto`} onSubmit={submitFormHandler}>
-      {/* extract entered amount, use ref for that */}
       <div className={classes.quantityControl}>
         <button
           onClick={(e) => {
             e.preventDefault();
-            return amountInputRef.current.value++;
+            if (quantityInputRef.current.value < 25) {
+              setQuantityIsValid(true);
+              return quantityInputRef.current.value++;
+            }
+            return;
           }}
         >
           +
         </button>
         <Input
           input={{
-            ref: amountInputRef,
+            ref: quantityInputRef,
             id: "quantity_" + props.id,
             type: "number",
             min: 1,
+            max: 25,
             defaultValue: 1,
+            onChange: changeQuantityHandler,
           }}
           label={"Quantity"}
         />
         <button
           onClick={(e) => {
             e.preventDefault();
-            if (amountInputRef.current.value > 1) {
-              return amountInputRef.current.value--;
+            if (quantityInputRef.current.value > 1) {
+              if (quantityInputRef.current.value < 27) {
+                setQuantityIsValid(true);
+              }
+              quantityInputRef.current.value--;
             }
             return;
           }}
@@ -54,7 +69,13 @@ const MealItemForm = (props) => {
         </button>
       </div>
       <button>+Add</button>
-      {!amountIsValid && <p>amount is not valid</p>}
+      {!quantityIsValid ? (
+        <p style={{ color: "red" }}>
+          quantity is not valid please enter a number between 1 and 25
+        </p>
+      ) : (
+        ""
+      )}
     </form>
   );
 };
