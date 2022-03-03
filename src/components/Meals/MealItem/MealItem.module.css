@@ -13,10 +13,36 @@
 .description {
   font-style: italic;
 }
+.mealPhoto {
+  width: 5rem;
+  height: 5rem;
+  margin-bottom: 8px;
+}
 
 .price {
   margin-top: 0.25rem;
   font-weight: bold;
   color: #ad5502;
   font-size: 1.25rem;
+}
+.mealCol{
+  max-width: fit-content !important;  
+}
+
+ @media (min-width:1px) and (max-width:542px) {
+  .mealCol{
+  margin: 0 auto;
+  }  
+} 
+
+.mealCard {
+  margin-bottom: 1rem;
+  width: 240px;
+  height: 95%;
+}
+
+@media (min-width:768px) {
+  .mealCard {
+    max-width: 216px;
+  }
 }

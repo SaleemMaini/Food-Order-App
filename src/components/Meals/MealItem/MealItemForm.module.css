@@ -1,20 +1,53 @@
 .form {
-  text-align: right;
+  display: flex;
+  direction: column;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
-
 .form button {
   font: inherit;
   cursor: pointer;
-  background-color: #8a2b06;
-  border: 1px solid #8a2b06;
+  background-color: #263748;
+  border: 1px solid #1e2833;
   color: white;
   padding: 0.25rem 2rem;
-  border-radius: 20px;
+  border-radius: 5px;
   font-weight: bold;
+  width: 100%;
 }
 
 .form button:hover,
 .form button:active {
-  background-color: #641e03;
-  border-color: #641e03;
+  background-color: #1e2833;
+  border-color: #1e2833;
+}
+
+.quantityControl {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quantityControl label {
+  margin: 0 0.5rem;
+  
+}
+.quantityControl input {
+  margin-bottom: 10px !important;
+  text-align: center;
+  padding: 5px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+.quantityControl button {
+  padding: 10px !important;
+  width: 3rem !important;
 }

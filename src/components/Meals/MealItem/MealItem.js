@@ -1,7 +1,10 @@
-import React, { useContext } from "react";
+import React, { Fragment, useContext } from "react";
 import classes from "./MealItem.module.css";
 import MealItemForm from "./MealItemForm";
 import CartContext from "../../../store/cart-context";
+import Card from "react-bootstrap/Card";
+import Col from "react-bootstrap/Col";
+
 const MealItem = (props) => {
   const cartCtx = useContext(CartContext);
 
@@ -11,22 +14,37 @@ const MealItem = (props) => {
     cartCtx.addItem({
       id: props.id,
       name: props.name,
-      amount : amount,
-      price: props.price
-    })
+      amount: amount,
+      price: props.price,
+    });
   };
 
   return (
-    <li className={classes.meal}>
-      <div>
-        <h3>{props.name}</h3>
-        <span className={classes.description}>{props.description}</span>
-        <div className={classes.price}>{price}</div>
-      </div>
-      <div>
-        <MealItemForm id={props.id} onAddToCart={addToCartHandler} />
-      </div>
-    </li>
+    <Fragment>
+      <Col className={classes.mealCol}>
+        <Card className={`${classes.mealCard} text-center`}>
+          <Card.Body>
+            <div
+              className={`${classes.mealPhoto} mx-auto d-flex align-items-center`}
+            >
+              <Card.Img
+                className=""
+                variant="top"
+                src={`${props.src}`}
+                alt="Image Photo"
+              />
+            </div>
+            <Card.Title>{props.name}</Card.Title>
+            <Card.Text>{props.description}</Card.Text>
+            <Card.Text>{price}</Card.Text>
+            <Card.Footer style={{ padding: "0.5rem 0rem" }}>
+              <MealItemForm id={props.id} onAddToCart={addToCartHandler} />
+            </Card.Footer>{" "}
+          </Card.Body>
+        </Card>
+      </Col>
+    </Fragment>
   );
 };
+
 export default MealItem;

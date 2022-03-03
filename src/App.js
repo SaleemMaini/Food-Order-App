@@ -1,9 +1,11 @@
-import React, { Suspense, useState } from "react";
-import Header from "./components/Layout/Header";
-import Meals from "./components/Meals/Meals";
+import React, { useState } from "react";
+import NavbarHeader from "./components/Layout/NavbarHeader";
+import MealsList from "./components/Meals/MealsList";
 import CartContextProvider from "./store/CartContextProvider";
+import Cart from "./components/Cart/Cart";
 
-const Cart = React.lazy(() => import("./components/Cart/Cart"));
+// Bootstrap
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [cartIsVisible, setCartIsVisible] = useState(false);
@@ -17,23 +19,13 @@ function App() {
   };
 
   return (
-    <React.Fragment>
-      <Suspense
-        fallback={
-          <div className="centered">
-            <p>Loading...</p>
-          </div>
-        }
-      >
-        <CartContextProvider>
-          {cartIsVisible && <Cart onClose={closeCartHandler}></Cart>}
-          <Header onOpenCart={showCartHandler} />
-          <main>
-            <Meals />
-          </main>
-        </CartContextProvider>
-      </Suspense>
-    </React.Fragment>
+    <CartContextProvider>
+      {cartIsVisible && <Cart onClose={closeCartHandler}></Cart>}
+      <NavbarHeader cartOnClick={showCartHandler} />
+      <main>
+        <MealsList />
+      </main>
+    </CartContextProvider>
   );
 }
 
