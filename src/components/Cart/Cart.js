@@ -91,7 +91,7 @@ const Cart = (props) => {
         <span>Total Amount</span>
         <span>{totalAmount}</span>
       </div>
-      {checkoutIsVisible && (
+      {checkoutIsVisible && cartCtx.items.length > 0 && (
         <Checkout onConfirm={submitOrderHandler} onCancel={props.onClose} />
       )}
       {modalActions}
