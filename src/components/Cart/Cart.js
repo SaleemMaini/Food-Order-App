@@ -15,8 +15,12 @@ const Cart = (props) => {
   const hasItems = cartList.length > 0;
 
   const cartItemAddHandler = (item) => {
-    // set amount value to 1 to make the button add just one item
-    cartCtx.addItem({ ...item, amount: 1 });
+    if(item.quantity < 25) {
+      cartCtx.addItem({ ...item, quantity: 1 });
+    }else {
+      alert("Can't add more than 25 items of same meal");
+    }
+    
   };
   const cartItemRemoveHandler = (id) => {
     cartCtx.removeItem(id);
@@ -48,7 +52,7 @@ const Cart = (props) => {
           id={item.id}
           name={item.name}
           price={item.price}
-          amount={item.amount}
+          quantity={item.quantity}
           onAdd={cartItemAddHandler.bind(null, item)}
           onRemove={cartItemRemoveHandler.bind(null, item.id)}
         />
@@ -91,7 +95,7 @@ const Cart = (props) => {
         <span>Total Amount</span>
         <span>{totalAmount}</span>
       </div>
-      {checkoutIsVisible && cartCtx.items.length > 0 && (
+      {checkoutIsVisible && hasItems && (
         <Checkout onConfirm={submitOrderHandler} onCancel={props.onClose} />
       )}
       {modalActions}

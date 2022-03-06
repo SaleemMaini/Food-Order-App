@@ -7,16 +7,34 @@ import Col from "react-bootstrap/Col";
 
 const MealItem = (props) => {
   const cartCtx = useContext(CartContext);
+  const cartList = cartCtx.items;
 
   const price = `$${props.price.toFixed(2)}`;
 
-  const addToCartHandler = (amount) => {
-    cartCtx.addItem({
-      id: props.id,
-      name: props.name,
-      amount: amount,
-      price: props.price,
-    });
+  const addToCartHandler = (quantity) => {
+    const existingCartItemIndex = cartList.findIndex(
+      (item) => item.id === props.id
+    );
+    if (cartList[existingCartItemIndex]) {
+      const totalQuantity = cartList[existingCartItemIndex].quantity + quantity;
+      if (totalQuantity > 25) {
+        alert("Can't add more than 25 items of same meal");
+      } else {
+        cartCtx.addItem({
+          id: props.id,
+          name: props.name,
+          quantity: quantity,
+          price: props.price,
+        });
+      }
+    } else {
+      cartCtx.addItem({
+        id: props.id,
+        name: props.name,
+        quantity: quantity,
+        price: props.price,
+      });
+    }
   };
 
   return (
@@ -39,7 +57,7 @@ const MealItem = (props) => {
             <Card.Text>{price}</Card.Text>
             <Card.Footer style={{ padding: "0.5rem 0rem" }}>
               <MealItemForm id={props.id} onAddToCart={addToCartHandler} />
-            </Card.Footer>{" "}
+            </Card.Footer>
           </Card.Body>
         </Card>
       </Col>

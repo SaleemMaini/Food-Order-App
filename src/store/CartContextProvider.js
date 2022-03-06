@@ -7,22 +7,27 @@ const defaultCartState = {
 
 const cartReducer = (state, action) => {
   if (action.type === "ADD_ITEM") {
-    const updatedTotalAmount =
-      state.totalAmount + action.item.price * action.item.amount;
+    // Get the existing cart Item
     const existingCartItemIndex = state.items.findIndex(
       (item) => item.id === action.item.id
     );
-    // Get the existing cart Item
     const existingCartItem = state.items[existingCartItemIndex];
     let updatedItems;
-    // here just update the amount of existing item
+
+    let updatedTotalAmount =
+      state.totalAmount + action.item.price * action.item.quantity;
+
     if (existingCartItem) {
-      const updatedItem = {
-        ...existingCartItem,
-        amount: existingCartItem.amount + action.item.amount,
-      };
-      updatedItems = [...state.items];
-      updatedItems[existingCartItemIndex] = updatedItem;
+      if (existingCartItem.quantity < 25) {
+        const updatedItem = {
+          ...existingCartItem,
+          quantity: existingCartItem.quantity + action.item.quantity,
+        };
+        updatedItems = [...state.items];
+        updatedItems[existingCartItemIndex] = updatedItem;
+      } else {
+        updatedItems = [...state.items];
+      }
     } else {
       updatedItems = state.items.concat(action.item);
     }
@@ -44,12 +49,12 @@ const cartReducer = (state, action) => {
     const updatedAmount = state.totalAmount - existingCartItem.price;
     let updatedItems;
     // Delete the item from the cart when the amount is = 0
-    if (existingCartItem.amount === 1) {
+    if (existingCartItem.quantity === 1) {
       updatedItems = state.items.filter((item) => item.id !== action.id);
     } else {
       const updatedItem = {
         ...existingCartItem,
-        amount: existingCartItem.amount - 1,
+        quantity: existingCartItem.quantity - 1,
       };
       updatedItems = [...state.items];
       updatedItems[existingCartItemIndex] = updatedItem;

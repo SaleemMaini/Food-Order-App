@@ -8,6 +8,7 @@ const MealsList = () => {
   // **** Fetch the data from the firebase ****
   const [meals, setMeals] = useState([]);
   const { isLoading, error, sendRequest: fetchMeals } = useHttp();
+  
   useEffect(() => {
     const transformMeals = (mealObj) => {
       const loadedMeals = [];
