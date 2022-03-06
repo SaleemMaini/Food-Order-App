@@ -1,5 +1,5 @@
 import React from "react";
-import { useRef,useImperativeHandle } from "react";
+import { useRef, useImperativeHandle } from "react";
 import classes from "./Input.module.css";
 
 const Input = React.forwardRef((props, ref) => {
@@ -7,13 +7,12 @@ const Input = React.forwardRef((props, ref) => {
 
   const getCurrValue = () => inputRef.current.value;
 
- 
-  useImperativeHandle(ref,() => {
+  useImperativeHandle(ref, () => {
     return {
-      value : getCurrValue
-    }
-  })
-  
+      value: getCurrValue,
+    };
+  });
+
   return (
     <div className={props.className || classes.input}>
       <label htmlFor={props.input.id}>{props.label}</label>
